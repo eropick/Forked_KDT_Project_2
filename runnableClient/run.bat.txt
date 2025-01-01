@@ -1,0 +1,10 @@
+@echo off
+setlocal
+rem 현재 스크립트 경로
+set SCRIPT_DIR=%~dp0
+set SERVCMD=java --module-path "%SCRIPT_DIR%\javafx-sdk\lib" ^
+--add-modules javafx.controls,javafx.graphics,javafx.fxml,javafx.swt,javafx.media,javafx.base,com.jfoenix ^
+-Dprism.order=sw ^
+-jar "%SCRIPT_DIR%\mrclient.jar"
+%SERVCMD%
+pause

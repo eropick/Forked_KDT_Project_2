@@ -1,0 +1,24 @@
+@echo off
+setlocal
+
+rem 현재 스크립트 경로
+set SCRIPT_DIR=%~dp0
+
+set /p IPADDR=IP주소를 입력해주세요(스킵 : 0.0.0.0) : 
+set /p PORTNUM=포트번호를 입력해주세요 : 
+set SERVCMD=java -jar "%SCRIPT_DIR%mrserver.jar"
+
+rem 입력 값 스킵 검사
+if not "%IPADDR%"=="" (
+    if not "%PORTNUM%"=="" (
+        rem 주소+포트번호
+        set SERVCMD=%SERVCMD% %IPADDR% %PORTNUM%
+    )
+) else (
+    if not "%PORTNUM%"=="" (
+        rem 포트번호(기본 주소 : 0.0.0.0)
+        set SERVCMD=%SERVCMD% %PORTNUM%
+    )
+)
+%SERVCMD%
+pause
